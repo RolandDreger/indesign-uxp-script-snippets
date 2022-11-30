@@ -29,18 +29,18 @@ async function alert(msg, title) {
 			padding: 30px 40px 20px 40px;
 			background-color: var(--uxp-alert-bg-color);
 		}
-		#uxp-alert-message {
+		#uxp-custom-alert-message {
 			margin-bottom: 2rem;
 			font-size: 1rem;
 		}
 	`;
 
 	const template = `
-		<p id="uxp-alert-message"></p>
-		<sp-button id="uxp-alert-button">OK</sp-button>
+		<p id="uxp-custom-alert-message"></p>
+		<sp-button id="uxp-custom-alert-close-button">OK</sp-button>
 	`;
 	
-	let dialogElem = document.querySelector("dialog#uxp-custom-alert");
+	let dialogElem = document.getElementById("uxp-custom-alert");
 	if(!dialogElem) {
 
 		const styleElem = document.createElement('style');
@@ -56,7 +56,7 @@ async function alert(msg, title) {
 
 		document.body.appendChild(dialogElem);
 
-		const buttonElem = dialogElem.querySelector('#uxp-alert-button');
+		const buttonElem = dialogElem.querySelector('#uxp-custom-alert-close-button');
 		buttonElem.addEventListener('click', evt => {
 			dialogElem.close();
 		});
@@ -71,7 +71,7 @@ async function alert(msg, title) {
 
 	dialogElem.uxpTitle = title;
 
-	let msgElem = dialogElem.querySelector('#uxp-alert-message');
+	let msgElem = dialogElem.querySelector('#uxp-custom-alert-message');
 	if(!!msgElem) {
 		msgElem.textContent = msg;
 	}
