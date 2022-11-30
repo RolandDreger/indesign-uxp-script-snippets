@@ -1,5 +1,5 @@
 # indesign-uxp-script-snippets
-Some indesign uxp script snippets
+Some InDesign uxp scripting samples.
 
 ## [Dialog](https://github.com/RolandDreger/indesign-uxp-script-snippets/tree/main/Dialog)
 - [Alert Dialog](https://github.com/RolandDreger/indesign-uxp-script-snippets/blob/main/Dialog/alert.idjs)
