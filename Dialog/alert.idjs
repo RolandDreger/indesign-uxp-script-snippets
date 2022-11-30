@@ -1,0 +1,82 @@
+
+await alert("Alert message.", "Alert");
+
+await alert("Unglaublich: Mit munterer Müdigkeit mehrfach gestrandet, eilen kabellose Kapuziner kantigen Kaufmannschaften hinterher. Greift da etwa die öde Haubitze nach Keimzellen kläglicher Katastralgemeinden.");
+
+
+async function alert(msg, title) {
+
+	if(!msg || msg.constructor !== String) {
+		msg = "";
+	}
+	if(!title || title.constructor !== String) {
+		title = "";
+	}
+
+	const styles = `
+		:root {
+			--uxp-alert-bg-color: transparent;
+		}
+		dialog {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			min-height: 80px;
+			max-height: 800px;
+			min-width: 200px;
+			max-width: 400px;
+			padding: 30px 40px 20px 40px;
+			background-color: var(--uxp-alert-bg-color);
+		}
+		#uxp-alert-message {
+			margin-bottom: 2rem;
+			font-size: 1rem;
+		}
+	`;
+
+	const template = `
+		<p id="uxp-alert-message"></p>
+		<sp-button id="uxp-alert-button">OK</sp-button>
+	`;
+	
+	let dialogElem = document.querySelector("dialog#uxp-custom-alert");
+	if(!dialogElem) {
+
+		const styleElem = document.createElement('style');
+		const stylesTextNode = document.createTextNode(styles);
+		styleElem.appendChild(stylesTextNode);
+
+		const headElem = document.querySelector('head');
+		headElem.appendChild(styleElem);
+
+		dialogElem = document.createElement('dialog');
+		dialogElem.setAttribute('id', 'uxp-custom-alert');
+		dialogElem.innerHTML = template; 
+
+		document.body.appendChild(dialogElem);
+
+		const buttonElem = dialogElem.querySelector('#uxp-alert-button');
+		buttonElem.addEventListener('click', evt => {
+			dialogElem.close();
+		});
+	}
+
+	if(title.match(/alert/i)) {
+		// dialogElem.style.setProperty('--uxp-alert-bg-color', 'lightcoral');
+		dialogElem.style.backgroundColor = 'lightcoral';
+	} else {
+		dialogElem.style.backgroundColor = 'transparent';
+	}
+
+	dialogElem.uxpTitle = title;
+
+	let msgElem = dialogElem.querySelector('#uxp-alert-message');
+	if(!!msgElem) {
+		msgElem.textContent = msg;
+	}
+	
+	await dialogElem.showModal();
+
+	return dialogElem;
+}
