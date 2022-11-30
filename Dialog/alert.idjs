@@ -1,22 +1,67 @@
 
-await alert("Alert message.", "Alert");
-
+await alert("Alert message.", "warn");
+await alert("Info message.", "info");
 await alert("Unglaublich: Mit munterer Müdigkeit mehrfach gestrandet, eilen kabellose Kapuziner kantigen Kaufmannschaften hinterher. Greift da etwa die öde Haubitze nach Keimzellen kläglicher Katastralgemeinden.");
 
 
-async function alert(msg, title) {
+async function alert(msg, type) {
 
 	if(!msg || msg.constructor !== String) {
 		msg = "";
 	}
-	if(!title || title.constructor !== String) {
-		title = "";
+	if(!type || type.constructor !== String) {
+		type = "";
+	}
+
+	let dialogElem = document.getElementById("uxp-custom-alert");
+	if(!dialogElem) {
+		dialogElem = createAlertDialog("uxp-custom-alert");
+	}
+	
+	let backgroundColor;
+
+	switch(type.toLowerCase()) {
+		case "warn":
+			backgroundColor = 'lightcoral';
+			break;
+		case "info":
+			backgroundColor = 'lightgreen ';
+			break;
+		default:
+			backgroundColor = 'initial';
+	}
+
+	dialogElem.style.backgroundColor = backgroundColor;
+
+	if(backgroundColor === 'initial'){
+		if(app.generalPreferences.uiBrightnessPreference <= 0.5) {
+			dialogElem.style.color = "white";
+		} else {
+			dialogElem.style.color = "black";
+		}
+	}
+
+	let msgElem = dialogElem.querySelector('#uxp-custom-alert-message');
+	if(!!msgElem) {
+		msgElem.textContent = msg;
+	}
+	
+	await dialogElem.showModal();
+
+	return dialogElem;
+}
+
+/**
+ * Create dialog
+ * @returns {Element}
+ */
+function createAlertDialog(dialogID) {
+
+	if(!dialogID || dialogID.constructor !== String) {
+		dialogID = "uxp-custom-dialog";
 	}
 
 	const styles = `
-		:root {
-			--uxp-alert-bg-color: transparent;
-		}
 		dialog {
 			display: flex;
 			flex-direction: column;
@@ -27,7 +72,7 @@ async function alert(msg, title) {
 			min-width: 200px;
 			max-width: 400px;
 			padding: 30px 40px 20px 40px;
-			background-color: var(--uxp-alert-bg-color);
+			color: inherit;
 		}
 		#uxp-custom-alert-message {
 			margin-bottom: 2rem;
@@ -39,44 +84,24 @@ async function alert(msg, title) {
 		<p id="uxp-custom-alert-message"></p>
 		<sp-button id="uxp-custom-alert-close-button">OK</sp-button>
 	`;
+
+	const styleElem = document.createElement('style');
+	const stylesTextNode = document.createTextNode(styles);
+	styleElem.appendChild(stylesTextNode);
+
+	const headElem = document.querySelector('head');
+	headElem.appendChild(styleElem);
+
+	const dialogElem = document.createElement('dialog');
+	dialogElem.setAttribute('id', dialogID);
+	dialogElem.innerHTML = template;
+
+	document.body.appendChild(dialogElem);
+
+	const buttonElem = dialogElem.querySelector('#uxp-custom-alert-close-button');
+	buttonElem.addEventListener('click', evt => {
+		dialogElem.close();
+	});
 	
-	let dialogElem = document.getElementById("uxp-custom-alert");
-	if(!dialogElem) {
-
-		const styleElem = document.createElement('style');
-		const stylesTextNode = document.createTextNode(styles);
-		styleElem.appendChild(stylesTextNode);
-
-		const headElem = document.querySelector('head');
-		headElem.appendChild(styleElem);
-
-		dialogElem = document.createElement('dialog');
-		dialogElem.setAttribute('id', 'uxp-custom-alert');
-		dialogElem.innerHTML = template; 
-
-		document.body.appendChild(dialogElem);
-
-		const buttonElem = dialogElem.querySelector('#uxp-custom-alert-close-button');
-		buttonElem.addEventListener('click', evt => {
-			dialogElem.close();
-		});
-	}
-
-	if(title.match(/alert/i)) {
-		// dialogElem.style.setProperty('--uxp-alert-bg-color', 'lightcoral');
-		dialogElem.style.backgroundColor = 'lightcoral';
-	} else {
-		dialogElem.style.backgroundColor = 'transparent';
-	}
-
-	dialogElem.uxpTitle = title;
-
-	let msgElem = dialogElem.querySelector('#uxp-custom-alert-message');
-	if(!!msgElem) {
-		msgElem.textContent = msg;
-	}
-	
-	await dialogElem.showModal();
-
 	return dialogElem;
 }
