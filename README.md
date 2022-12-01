@@ -39,4 +39,14 @@ A incomplete list of what is not yet possible with UXP scripting (at the moment)
 
 - Assign a value to custom property: `Element.style.setProperty('--custom-property', 'value')`
 - Get content from template element: `Template.content.cloneNode(true)`
+- `setTimeout()` (I think execution is terminated before tasks in the task queue will be executed)
+	With a delay of zero, only the first one seems to work:
+	```
+	setTimeout(() => {
+		console.log("Time out finished 1");
+	}, 0);
+	setTimeout(() => {
+		console.log("Time out finished 2");
+	}, 0);
+	```
 - `new DOMParser()` nope (DOMParser is not defined)
