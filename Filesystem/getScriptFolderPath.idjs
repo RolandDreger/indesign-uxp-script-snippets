@@ -1,0 +1,22 @@
+// Script folder path
+const scriptFolderPath = await getScriptFolderPath();
+console.log(scriptFolderPath);
+
+// Script path
+const scriptPath = scriptFolderPath + __filename;
+console.log(scriptPath);
+console.log(app.activeScript); // Gives an error in the UXP Developer Tool
+
+
+/**
+ * Get script folder path
+ * @returns {String}
+ */
+async function getScriptFolderPath() {
+	
+	const uxpStorage = require('uxp').storage;
+	const localFS = uxpStorage.localFileSystem;
+	const pluginFolder = await localFS.getPluginFolder();
+
+	return pluginFolder.nativePath.replace(/[\\/]$/,"");
+}
