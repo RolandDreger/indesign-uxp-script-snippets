@@ -9,7 +9,7 @@ Some InDesign uxp scripting samples.
 
 ## Adobe
 - [JavaScript Reference](https://developer.adobe.com/indesign/uxp/uxp/reference-js/)
-- [uxp-scripting-samples](https://github.com/AdobeDocs/uxp-indesign/tree/main/src/pages/reference/uxp-scripting-samples)
+- [UXP Scripting Samples](https://github.com/AdobeDocs/uxp-indesign/tree/main/src/pages/reference/uxp-scripting-samples)
 - [Spectrum UXP Reference](https://developer.adobe.com/indesign/uxp/uxp/reference-spectrum/)
 - [Spectrum Web Components](https://opensource.adobe.com/spectrum-web-components/)
 - [Spectrum Web Components (Storybook)](https://opensource.adobe.com/spectrum-web-components/storybook/)
@@ -39,5 +39,4 @@ A incomplete list of what is not yet possible with UXP scripting (at the moment)
 
 - Assign a value to custom property: `Element.style.setProperty('--custom-property', 'value')`
 - Get content from template element: `Template.content.cloneNode(true)`
-- `setTimeout()` (I think execution is terminated before tasks in the task queue will be executed)
 - `new DOMParser()` nope (DOMParser is not defined)
