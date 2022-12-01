@@ -1,13 +1,16 @@
 # InDesign UXP Scripting Snippets
-Some InDesign uxp scripting samples.
+Some InDesign UXP scripting samples.
 
 ## [Dialog](https://github.com/RolandDreger/indesign-uxp-script-snippets/tree/main/Dialog)
 - [Alert Dialog](https://github.com/RolandDreger/indesign-uxp-script-snippets/blob/main/Dialog/alert.idjs)
 
+## [File System](https://github.com/RolandDreger/indesign-uxp-script-snippets/tree/main/Filesystem)
+- [Script Folder Path](https://github.com/RolandDreger/indesign-uxp-script-snippets/blob/main/Filesystem/getScriptFolderPath.idjs)
+
 &nbsp;
 # Resources
-
 ## Adobe
+- [UXP for Adobe InDesign](https://developer.adobe.com/indesign/uxp)
 - [JavaScript Reference](https://developer.adobe.com/indesign/uxp/uxp/reference-js/)
 - [UXP Scripting Samples](https://github.com/AdobeDocs/uxp-indesign/tree/main/src/pages/reference/uxp-scripting-samples)
 - [Spectrum UXP Reference](https://developer.adobe.com/indesign/uxp/uxp/reference-spectrum/)
@@ -17,6 +20,7 @@ Some InDesign uxp scripting samples.
 &nbsp;
 # Articles
 - [InDesign v. 18 Ships with Scripting Powered by UXP](https://blog.developer.adobe.com/indesign-v-18-ships-with-scripting-powered-by-uxp-53e5dc008f17)
+- [Migrating existing JavaScript(ExtendScript) to UXP Script](https://developer.adobe.com/indesign/uxp/guides/migrating-to-UXPScript/)
 
 &nbsp;
 # Community
