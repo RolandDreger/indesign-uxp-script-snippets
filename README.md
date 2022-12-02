@@ -7,4 +7,5 @@ Some InDesign UXP scripting samples. The snippets are intended as demonstration 
 ## [File System](https://github.com/RolandDreger/indesign-uxp-script-snippets/tree/main/Filesystem)
 - [Script Folder Path](https://github.com/RolandDreger/indesign-uxp-script-snippets/blob/main/Filesystem/getScriptFolderPath.idjs)
 
-&nbsp;
+## [Web API](https://github.com/RolandDreger/indesign-uxp-script-snippets/tree/main/Web_API)
+- [Place image via URL](https://github.com/RolandDreger/indesign-uxp-script-snippets/blob/main/Web_API/placeImageViaURL.idjs)
