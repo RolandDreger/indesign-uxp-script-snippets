@@ -1,0 +1,45 @@
+const fs = require('fs');
+const uxpStorage = require('uxp').storage;
+const uxpLocalFileSystem = uxpStorage.localFileSystem;
+
+/* Fetch image */
+const imageURL = "https://developer.adobe.com/indesign/uxp/static/d05a02f79b20c08916cdb944c3e13c57/66888/running_a_script.webp";
+
+/* Basic Auth */
+// const headers = new Headers();
+// headers.append("Authorization", "Basic YOUR_BASE64_AUTH");
+// var requestOptions = {
+//   method: 'GET',
+//   headers: headers,
+//   redirect: 'follow'
+// };
+// var requestOptions = {
+//   method: 'GET',
+//   redirect: 'follow'
+// };
+// const res = await fetch(imageURL, requestOptions);
+
+/* No Auth */
+const res = await fetch(imageURL);
+if(!res.ok) {
+	throw new Error(`HTTP error, status = ${res.status}`);
+}
+
+const arrayBuffer = await res.arrayBuffer();
+
+/* Save image (temporary folder) */
+const tempFolderPath = await uxpLocalFileSystem.getTemporaryFolder();
+const imageName = "running_a_script.webp";
+const imagePath = tempFolderPath.nativePath + imageName;
+
+await fs.writeFile("file:" + imagePath, arrayBuffer);
+
+console.log("Local image path: " + imagePath);
+
+/* Place image (active document) */
+const doc = app.activeDocument;
+const imageFrame = doc.rectangles.add();
+imageFrame.geometricBounds = [12.7,12.7,100,100];
+imageFrame.place(imagePath);
+imageFrame.fit(FitOptions.CONTENT_AWARE_FIT);
+
