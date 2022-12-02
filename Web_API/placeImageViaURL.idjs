@@ -13,10 +13,6 @@ const imageURL = "https://developer.adobe.com/indesign/uxp/static/d05a02f79b20c0
 //   headers: headers,
 //   redirect: 'follow'
 // };
-// var requestOptions = {
-//   method: 'GET',
-//   redirect: 'follow'
-// };
 // const res = await fetch(imageURL, requestOptions);
 
 /* No Auth */
