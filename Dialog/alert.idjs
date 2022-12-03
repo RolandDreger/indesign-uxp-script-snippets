@@ -13,9 +13,9 @@ async function alert(msg, type) {
 		type = "";
 	}
 
-	let dialogElem = document.getElementById("uxp-custom-alert");
+	let dialogElem = document.getElementById("rd-alert");
 	if(!dialogElem) {
-		dialogElem = createAlertDialog("uxp-custom-alert");
+		dialogElem = createAlertDialog();
 	}
 	
 	let backgroundColor;
@@ -41,7 +41,7 @@ async function alert(msg, type) {
 		}
 	}
 
-	let msgElem = dialogElem.querySelector('#uxp-custom-alert-message');
+	let msgElem = dialogElem.querySelector('#rd-alert-message');
 	if(!!msgElem) {
 		msgElem.textContent = msg;
 	}
@@ -55,14 +55,13 @@ async function alert(msg, type) {
  * Create dialog
  * @returns {Element}
  */
-function createAlertDialog(dialogID) {
+function createAlertDialog() {
 
-	if(!dialogID || dialogID.constructor !== String) {
-		dialogID = "uxp-custom-dialog";
-	}
-
+	const DIALOG_ID	= "rd-alert";
+	
+	/* Namespace für styles hinzufügen rd- */
 	const styles = `
-		dialog {
+		dialog#${DIALOG_ID} {
 			display: flex;
 			flex-direction: column;
 			align-items: center;
@@ -74,15 +73,15 @@ function createAlertDialog(dialogID) {
 			padding: 30px 40px 20px 40px;
 			color: inherit;
 		}
-		#uxp-custom-alert-message {
+		p#${DIALOG_ID}-message {
 			margin-bottom: 2rem;
 			font-size: 1rem;
 		}
 	`;
 
 	const template = `
-		<p id="uxp-custom-alert-message"></p>
-		<sp-button id="uxp-custom-alert-close-button">OK</sp-button>
+		<p id="${DIALOG_ID}-message"></p>
+		<sp-button id="${DIALOG_ID}-close-button">OK</sp-button>
 	`;
 
 	const styleElem = document.createElement('style');
@@ -93,12 +92,12 @@ function createAlertDialog(dialogID) {
 	headElem.appendChild(styleElem);
 
 	const dialogElem = document.createElement('dialog');
-	dialogElem.setAttribute('id', dialogID);
+	dialogElem.setAttribute('id', DIALOG_ID);
 	dialogElem.innerHTML = template;
 
 	document.body.appendChild(dialogElem);
 
-	const buttonElem = dialogElem.querySelector('#uxp-custom-alert-close-button');
+	const buttonElem = dialogElem.querySelector(`#${DIALOG_ID}-close-button`);
 	buttonElem.addEventListener('click', evt => {
 		dialogElem.close();
 	});
