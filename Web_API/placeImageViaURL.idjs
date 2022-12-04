@@ -2,6 +2,12 @@ const fs = require('fs');
 const uxpStorage = require('uxp').storage;
 const uxpLocalFileSystem = uxpStorage.localFileSystem;
 
+/* Check: User is online? */
+if(!navigator.onLine) {
+	console.log("No network connection available.");
+	return false;
+}
+
 /* Fetch image */
 const imageURL = "https://developer.adobe.com/indesign/uxp/static/d05a02f79b20c08916cdb944c3e13c57/66888/running_a_script.webp";
 
