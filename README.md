@@ -3,6 +3,7 @@ Some InDesign UXP scripting samples. The snippets are intended as demonstration 
 
 ## [Dialog](https://github.com/RolandDreger/indesign-uxp-script-snippets/tree/main/Dialog)
 - [Alert Dialog](https://github.com/RolandDreger/indesign-uxp-script-snippets/blob/main/Dialog/alert.idjs)
+- [UI Kitchen Sink](https://github.com/RolandDreger/indesign-uxp-script-snippets/blob/main/Dialog/uiKitchenSink.idjs)
 
 ## [File System](https://github.com/RolandDreger/indesign-uxp-script-snippets/tree/main/Filesystem)
 - [Script Folder Path](https://github.com/RolandDreger/indesign-uxp-script-snippets/blob/main/Filesystem/getScriptFolderPath.idjs)
