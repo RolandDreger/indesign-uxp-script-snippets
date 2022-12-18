@@ -5,7 +5,7 @@ const DIALOG_CONFIG = {
 	"resize": "both", /* "none", "both", "horizontal", "vertical" */
 	"size": {
 		"width": 720,
-		"height": 500
+		"height": 480
 	}
 };
 const spectrumIconArray = [
@@ -261,7 +261,7 @@ const styles = /* css */ `
 		flex-direction: column;
 		align-items: start;
 		justify-content: space-between;
-		padding: 30px 20px 20px 20px;
+		padding: 30px 10px 20px 20px;
 	}
 	div#${DIALOG_ID}-main {
 		flex:1;
@@ -272,26 +272,37 @@ const styles = /* css */ `
 	}
 	.components {
 		display: none;
-		padding: 20px
+		padding: 30px 20px 20px 10px;
 	}
 	.component {
-		margin-bottom: 20px;
+		margin-bottom: 30px;
 		display: flex;
 		flex-direction: column;
 	}
-	sp-label.component-label {
+	.component sp-body, .component sp-detail, .component sp-label {
+		margin: 0;
+	}
+	.component-label {
 		align-self: start;
-		transform: translate(10px, 0.85rem);
+		transform: translate(10px, 0.2rem);
 		padding: 4px 6px;
 		margin-bottom: 10px;
 		border-radius: 2px;
 		color: #ffffff;
 		background-color: var(--spectrum-global-color-seafoam-800, rgb(0,140,135));
 	}
-	sp-body.component-description {
+	.component-description {
 		order: 10;
-		margin-left: 10px;
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		align-items: start;
+		justify-content: space-between;
 		margin-top: 0.3rem;
+		padding: 0 10px;
+	}
+	.component-description sp-link {
+		margin-left: 3rem;
 	}
 	.component-items {
 		display: flex;
@@ -299,10 +310,7 @@ const styles = /* css */ `
 		justify-content: space-between;
 		background-color: rgb(190,190,190);
 		border-radius: 4px;
-		padding: 20px;
-	}
-	.component-items sp-body, .component-items sp-detail, .component-items sp-label {
-		margin: 0;
+		padding: 20px 10px 20px 20px;
 	}
 	.component-code {
 		flex: 1;
@@ -355,7 +363,10 @@ const template = /* html */`
 			<div id="typography" class="components visible">
 				<div class="component">
 					<sp-label class="component-label">sp-heading</sp-label>
-					<sp-body class="component-description" size="S">Renders heading text that is theme aware.</sp-body>
+					<div class="component-description">
+						<sp-body size="S">Renders heading text that is theme aware.</sp-body>
+						<sp-link href="https://spectrum.adobe.com/page/heading/#Options">Options</sp-link>
+					</div>
 					<div class="component-items">
 						<div class="component-code">
 							<sp-heading size="XL">Lorem ipsum dolor sit</sp-heading>
@@ -367,7 +378,10 @@ const template = /* html */`
 				</div>
 				<div class="component">
 					<sp-label class="component-label">sp-body</sp-label>
-					<sp-body class="component-description" size="S">Renders body text that is theme aware.</sp-body>
+					<div class="component-description">
+						<sp-body size="S">Renders body text that is theme aware.</sp-body>
+						<sp-link href="https://spectrum.adobe.com/page/body/#Options">Options</sp-link>
+					</div>
 					<div class="component-items">
 						<div class="component-code">
 							<sp-body size="M">Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</sp-body>
@@ -379,7 +393,10 @@ const template = /* html */`
 				</div>
 				<div class="component">
 					<sp-label class="component-label">sp-detail</sp-label>
-					<sp-body class="component-description" size="S">Renders detail text in smaller font.</sp-body>
+					<div class="component-description">
+						<sp-body size="S">Renders detail text in smaller font.</sp-body>
+						<sp-link href="https://spectrum.adobe.com/page/detail/#Options">Options</sp-link>
+					</div>
 					<div class="component-items">
 						<div class="component-code">
 							<sp-detail>Lorem ipsum dolor sit amet, consectetur adipisici elit.</sp-detail>
@@ -391,7 +408,9 @@ const template = /* html */`
 				</div>
 				<div class="component">
 					<sp-label class="component-label">sp-label</sp-label>
-					<sp-body class="component-description" size="S">Renders a text label.</sp-body>
+					<div class="component-description">
+						<sp-body size="S">Renders a text label.</sp-body>
+					</div>
 					<div class="component-items">
 						<div class="component-code">
 							<sp-label>Lorem ipsum dolor sit amet, consectetur adipisici elit.</sp-label>
@@ -403,7 +422,10 @@ const template = /* html */`
 				</div>
 				<div class="component">
 					<sp-label class="component-label">sp-link</sp-label>
-					<sp-body class="component-description" size="S">Renders a link, that when clicked can launch a webpage in the user's default browser.</sp-body>
+					<div class="component-description">
+						<sp-body size="S">Renders a link, that when clicked can launch a webpage in the user's default browser.</sp-body>
+						<sp-link href="https://opensource.adobe.com/spectrum-web-components/components/link/api/">API</sp-link>
+					</div>
 					<div class="component-items">
 						<sp-body>
 							This is a <span class="component-code"><sp-link href="https://www.adobe.com">standard link</sp-link></span>.
@@ -419,7 +441,10 @@ const template = /* html */`
 			<div id="ui" class="components">
 				<div class="component">
 					<sp-label class="component-label">sp-action-button</sp-label>
-					<sp-body class="component-description" size="S">Renders an action button.</sp-body>
+					<div class="component-description">
+						<sp-body size="S">Renders an action button.</sp-body>
+						<sp-link href="https://opensource.adobe.com/spectrum-web-components/components/action-button/api/">API</sp-link>
+					</div>
 					<div class="component-items">
 						<div class="component-code">
 							<sp-action-button>Action Button</sp-action-button>
@@ -431,7 +456,10 @@ const template = /* html */`
 				</div>
 				<div class="component">
 					<sp-label class="component-label">sp-button</sp-label>
-					<sp-body class="component-description" size="S">Renders an button.</sp-body>
+					<div class="component-description">
+						<sp-body size="S">Renders an button.</sp-body>
+						<sp-link href="https://opensource.adobe.com/spectrum-web-components/components/button/api/">API</sp-link>
+					</div>
 					<div class="component-items">
 						<div class="component-code">
 							<sp-button>Button</sp-button>
@@ -443,7 +471,10 @@ const template = /* html */`
 				</div>
 				<div class="component">
 					<sp-label class="component-label">sp-checkbox</sp-label>
-					<sp-body class="component-description" size="S">Renders an checkbox with associated label.</sp-body>
+					<div class="component-description">
+						<sp-body size="S">Renders an checkbox with associated label.</sp-body>
+						<sp-link href="https://opensource.adobe.com/spectrum-web-components/components/checkbox/api/">API</sp-link>
+					</div>
 					<div class="component-items">
 						<div class="component-code">
 							<sp-checkbox>Checkbox with label</sp-checkbox>
@@ -455,7 +486,10 @@ const template = /* html */`
 				</div>
 				<div class="component">
 					<sp-label class="component-label">sp-divider</sp-label>
-					<sp-body class="component-description" size="S">Renders a divider.</sp-body>
+					<div class="component-description">
+						<sp-body size="S">Renders a divider.</sp-body>
+						<sp-link href="https://opensource.adobe.com/spectrum-web-components/components/divider/api/">API</sp-link>
+					</div>
 					<div class="component-items">
 						<div class="component-code">
 							<sp-divider></sp-divider>
@@ -467,7 +501,10 @@ const template = /* html */`
 				</div>
 				<div class="component">
 					<sp-label class="component-label">sp-dropdown</sp-label>
-					<sp-body class="component-description" size="S">Renders a dropdown with menu items. The dropdown must contain a sp-menu with slot="options", and inside the sp-menu, a series of sp-menu-item or sp-menu-divider elements.</sp-body>
+					<div class="component-description">
+						<sp-body size="S">Renders a dropdown with menu items. The dropdown must contain a sp-menu with slot="options", and inside the sp-menu, a series of sp-menu-item or sp-menu-divider elements.</sp-body>
+						<sp-link href="https://opensource.adobe.com/spectrum-web-components/components/picker/api/">API</sp-link>
+					</div>
 					<div class="component-items">
 						<div class="component-code">
 							<sp-dropdown placeholder="Make a selection..." style="width: 320px">
@@ -489,7 +526,10 @@ const template = /* html */`
 				</div>
 				<div class="component">
 					<sp-label class="component-label">sp-menu</sp-label>
-					<sp-body class="component-description" size="S">Renders a menu with menu items. Inside the sp-menu, a series of sp-menu-item or sp-menu-divider elements may exist.</sp-body>
+					<div class="component-description">
+						<sp-body size="S">Renders a menu with menu items. Inside the sp-menu, a series of sp-menu-item or sp-menu-divider elements may exist.</sp-body>
+						<sp-link href="https://opensource.adobe.com/spectrum-web-components/components/menu/api/">API</sp-link>
+					</div>
 					<div class="component-items">
 						<div class="component-code">
 						<sp-menu>
@@ -509,7 +549,10 @@ const template = /* html */`
 				</div>
 				<div class="component">
 					<sp-label class="component-label">sp-progressbar</sp-label>
-					<sp-body class="component-description" size="S">Renders a progress bar.</sp-body>
+					<div class="component-description">
+						<sp-body size="S">Renders a progress bar.</sp-body>
+						<sp-link href="https://opensource.adobe.com/spectrum-web-components/components/progress-bar/api/">API</sp-link>
+					</div>
 					<div class="component-items">
 						<div class="component-code">
 						<sp-progressbar max="100" value="50" value-label="593 KB" size="medium">
@@ -523,7 +566,10 @@ const template = /* html */`
 				</div>
 				<div class="component">
 					<sp-label class="component-label">sp-radio</sp-label>
-					<sp-body class="component-description" size="S">Renders a radio button with associated label.</sp-body>
+					<div class="component-description">
+						<sp-body size="S">Renders a radio button with associated label.</sp-body>
+						<sp-link href="https://opensource.adobe.com/spectrum-web-components/components/radio/api/">API</sp-link>
+					</div>
 					<div class="component-items">
 						<div class="component-code">
 							<sp-radio value="id">Adobe InDesign</sp-radio>
@@ -535,7 +581,10 @@ const template = /* html */`
 				</div>
 				<div class="component">
 					<sp-label class="component-label">sp-radio-group</sp-label>
-					<sp-body class="component-description" size="S">Renders a group of radio buttons horizontally or vertically (column layout), with an optional field label.</sp-body>
+					<div class="component-description">
+						<sp-body size="S">Renders a group of radio buttons horizontally or vertically (column layout), with an optional field label.</sp-body>
+						<sp-link href="https://opensource.adobe.com/spectrum-web-components/components/radio/api/">API</sp-link>
+					</div>
 					<div class="component-items">
 						<div class="component-code">
 							<sp-radio-group>
@@ -552,7 +601,10 @@ const template = /* html */`
 				</div>
 				<div class="component">
 					<sp-label class="component-label">sp-slider</sp-label>
-					<sp-body class="component-description" size="S">Renders a slider with optional associated label.</sp-body>
+					<div class="component-description">
+						<sp-body size="S">Renders a slider with optional associated label.</sp-body>
+						<sp-link href="https://opensource.adobe.com/spectrum-web-components/components/slider/api/">API</sp-link>
+					</div>
 					<div class="component-items">
 						<div class="component-code">
 							<sp-slider min="0" max="100" value="50">
@@ -566,7 +618,10 @@ const template = /* html */`
 				</div>
 				<div class="component">
 					<sp-label class="component-label">sp-textarea</sp-label>
-					<sp-body class="component-description" size="S">Renders a text area with optional associated label.</sp-body>
+					<div class="component-description">
+						<sp-body size="S">Renders a text area with optional associated label.</sp-body>
+						<sp-link href="https://opensource.adobe.com/spectrum-web-components/components/textarea/api/">API</sp-link>
+					</div>
 					<div class="component-items">
 						<div class="component-code">
 						<sp-textarea placeholder="Enter your name" multiline>
@@ -580,7 +635,10 @@ const template = /* html */`
 				</div>
 				<div class="component">
 					<sp-label class="component-label">sp-textfield</sp-label>
-					<sp-body class="component-description" size="S">Renders a text field with optional associated label.</sp-body>
+					<div class="component-description">
+						<sp-body size="S">Renders a text field with optional associated label.</sp-body>
+						<sp-link href="https://opensource.adobe.com/spectrum-web-components/components/textfield/api/">API</sp-link>
+					</div>
 					<div class="component-items">
 						<div class="component-code">
 							<sp-textfield placeholder="Phone Number">
@@ -623,7 +681,9 @@ function buildIconComponents(iconArray, copyHtmlSvg) {
 				${acc}
 				<div class="component">
 					<sp-label class="component-label">sp-icon</sp-label>
-					<sp-body class="component-description" size="S">${name}</sp-body>
+					<div class="component-description">
+						<sp-body size="S">${name}</sp-body>
+					</div>
 					<div class="component-items">
 						<span class="component-code"><sp-icon name="${attributeValue}" size="xxl"></sp-icon></span>
 						<sp-action-button class="copy-html-button" size="large" quiet>
