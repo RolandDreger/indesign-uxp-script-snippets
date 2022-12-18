@@ -1,16 +1,237 @@
 /* Config */
 const DIALOG_ID	= "ui-kitchen-sink";
 const DIALOG_CONFIG = {
-	"title":"InDesign Spectrum UXP",
+	"title":"InDesign Spectrum UXP 4.1",
 	"resize": "both", /* "none", "both", "horizontal", "vertical" */
 	"size": {
-		"width": 600,
-		"height": 700
+		"width": 720,
+		"height": 500
 	}
 };
+const spectrumIconArray = [
+	["Alert Medium", "ui:AlertMedium"],
+	["Alert Small", "ui:AlertSmall"],
+	["Arrow Down Small", "ui:ArrowDownSmall"],
+	["Arrow Left Medium", "ui:ArrowLeftMedium"],
+	["Arrow Up Small", "ui:ArrowUpSmall"],
+	["Asterisk", "ui:Asterisk"],
+	["Checkmark Medium", "ui:CheckmarkMedium"],
+	["Checkmark Small", "ui:CheckmarkSmall"],
+	["Chevron Down Medium", "ui:ChevronDownMedium"],
+	["Chevron Down Small", "ui:ChevronDownSmall"],
+	["Chevron Left Large", "ui:ChevronLeftLarge"],
+	["Chevron Left Medium", "ui:ChevronLeftMedium"],
+	["Chevron Right Large", "ui:ChevronRightLarge"],
+	["Chevron Right Medium", "ui:ChevronRightMedium"],
+	["Chevron Right Small", "ui:ChevronRightSmall"],
+	["Chevron Up Small", "ui:ChevronUpSmall"],
+	["Corner Triangle", "ui:CornerTriangle"],
+	["Cross Large", "ui:CrossLarge"],
+	["Cross Medium", "ui:CrossMedium"],
+	["Cross Small", "ui:CrossSmall"],
+	["Dash Small", "ui:DashSmall"],
+	["Double Gripper", "ui:DoubleGripper"],
+	["Folder Breadcrumb", "ui:FolderBreadcrumb"],
+	["Help Medium", "ui:HelpMedium"],
+	["Help Small", "ui:HelpSmall"],
+	["Info Medium", "ui:InfoMedium"],
+	["Info Small", "ui:InfoSmall"],
+	["Magnifier", "ui:Magnifier"],
+	["More", "ui:More"],
+	["Skip Left", "ui:SkipLeft"],
+	["Skip Right", "ui:SkipRight"],
+	["Star", "ui:Star"],
+	["Star Outline", "ui:StarOutline"],
+	["Success Medium", "ui:SuccessMedium"],
+	["Success Small", "ui:SuccessSmall"],
+	["Triple Gripper", "ui:TripleGripper"]
+];
+const spectrumColorArray = [
+	["Gray 50", "--spectrum-global-color-gray-50", "1.06", "rgb(255, 255, 255)"],
+	["Gray 75", "--spectrum-global-color-gray-75", "1.04", "rgb(253, 253, 253)"],
+	["Gray 100", "--spectrum-global-color-gray-100", "1.00", "rgb(248, 248, 248)"],
+	["Gray 200", "--spectrum-global-color-gray-200", "1.18", "rgb(230, 230, 230)"],
+	["Gray 300", "--spectrum-global-color-gray-300", "1.38", "rgb(213, 213, 213)"],
+	["Gray 400", "--spectrum-global-color-gray-400", "2.02", "rgb(177, 177, 177)"],
+	["Gray 500", "--spectrum-global-color-gray-500", "3.01", "rgb(144, 144, 144)"],
+	["Gray 600", "--spectrum-global-color-gray-600", "4.87", "rgb(109, 109, 109)"],
+	["Gray 700", "--spectrum-global-color-gray-700", "8.89", "rgb(70, 70, 70)"],
+	["Gray 800", "--spectrum-global-color-gray-800", "14.98", "rgb(34, 34, 34)"],
+	["Gray 900", "--spectrum-global-color-gray-900", "19.77", "rgb(0, 0, 0)"],
+	["Blue 100", "--spectrum-global-color-blue-100", "1.08", "rgb(224, 242, 255)"],
+	["Blue 200", "--spectrum-global-color-blue-200", "1.20", "rgb(202, 232, 255)"],
+	["Blue 300", "--spectrum-global-color-blue-300", "1.33", "rgb(181, 222, 255)"],
+	["Blue 400", "--spectrum-global-color-blue-400", "1.58", "rgb(150, 206, 253)"],
+	["Blue 500", "--spectrum-global-color-blue-500", "1.92", "rgb(120, 187, 250)"],
+	["Blue 600", "--spectrum-global-color-blue-600", "2.39", "rgb(89, 167, 246)"],
+	["Blue 700", "--spectrum-global-color-blue-700", "3.01", "rgb(56, 146, 243)"],
+	["Blue 800", "--spectrum-global-color-blue-800", "3.87", "rgb(20, 122, 243)"],
+	["Blue 900", "--spectrum-global-color-blue-900", "5.07", "rgb(2, 101, 220)"],
+	["Blue 1000", "--spectrum-global-color-blue-1000", "6.72", "rgb(0, 84, 182)"],
+	["Blue 1100", "--spectrum-global-color-blue-1100", "8.84", "rgb(0, 68, 145)"],
+	["Blue 1200", "--spectrum-global-color-blue-1200", "11.31", "rgb(0, 53, 113)"],
+	["Blue 1300", "--spectrum-global-color-blue-1300", "13.94", "rgb(0, 39, 84)"],
+	["Green 100", "--spectrum-global-color-green-100", "1.09", "rgb(206, 248, 224)"],
+	["Green 200", "--spectrum-global-color-green-200", "1.19", "rgb(173, 244, 206)"],
+	["Green 300", "--spectrum-global-color-green-300", "1.34", "rgb(137, 236, 188)"],
+	["Green 400", "--spectrum-global-color-green-400", "1.57", "rgb(103, 222, 168)"],
+	["Green 500", "--spectrum-global-color-green-500", "1.91", "rgb(73, 204, 147)"],
+	["Green 600", "--spectrum-global-color-green-600", "2.39", "rgb(47, 184, 128)"],
+	["Green 700", "--spectrum-global-color-green-700", "3.01", "rgb(21, 164, 110)"],
+	["Green 800", "--spectrum-global-color-green-800", "3.89", "rgb(0, 143, 93)"],
+	["Green 900", "--spectrum-global-color-green-900", "5.08", "rgb(0, 122, 77)"],
+	["Green 1000", "--spectrum-global-color-green-1000", "6.75", "rgb(0, 101, 62)"],
+	["Green 1100", "--spectrum-global-color-green-1100", "8.89", "rgb(0, 81, 50)"],
+	["Green 1200", "--spectrum-global-color-green-1200", "11.32", "rgb(5, 63, 39)"],
+	["Green 1300", "--spectrum-global-color-green-1300", "13.91", "rgb(10, 46, 29)"],
+	["Orange 100", "--spectrum-global-color-orange-100", "1.09", "rgb(255, 236, 204)"],
+	["Orange 200", "--spectrum-global-color-orange-200", "1.20", "rgb(255, 223, 173)"],
+	["Orange 300", "--spectrum-global-color-orange-300", "1.34", "rgb(253, 210, 145)"],
+	["Orange 400", "--spectrum-global-color-orange-400", "1.58", "rgb(255, 187, 99)"],
+	["Orange 500", "--spectrum-global-color-orange-500", "1.91", "rgb(255, 160, 55)"],
+	["Orange 600", "--spectrum-global-color-orange-600", "2.39", "rgb(246, 133, 17)"],
+	["Orange 700", "--spectrum-global-color-orange-700", "3.01", "rgb(228, 111, 0)"],
+	["Orange 800", "--spectrum-global-color-orange-800", "3.87", "rgb(203, 93, 0)"],
+	["Orange 900", "--spectrum-global-color-orange-900", "5.07", "rgb(177, 76, 0)"],
+	["Orange 1000", "--spectrum-global-color-orange-1000", "6.71", "rgb(149, 61, 0)"],
+	["Orange 1100", "--spectrum-global-color-orange-1100", "8.85", "rgb(122, 47, 0)"],
+	["Orange 1200", "--spectrum-global-color-orange-1200", "11.31", "rgb(97, 35, 0)"],
+	["Orange 1300", "--spectrum-global-color-orange-1300", "13.90", "rgb(73, 25, 1)"],
+	["Red 100", "--spectrum-global-color-red-100", "1.08", "rgb(255, 235, 231)"],
+	["Red 200", "--spectrum-global-color-red-200", "1.19", "rgb(255, 221, 214)"],
+	["Red 300", "--spectrum-global-color-red-300", "1.34", "rgb(255, 205, 195)"],
+	["Red 400", "--spectrum-global-color-red-400", "1.57", "rgb(255, 183, 169)"],
+	["Red 500", "--spectrum-global-color-red-500", "1.92", "rgb(255, 155, 136)"],
+	["Red 600", "--spectrum-global-color-red-600", "2.38", "rgb(255, 124, 101)"],
+	["Red 700", "--spectrum-global-color-red-700", "3.01", "rgb(247, 92, 70)"],
+	["Red 800", "--spectrum-global-color-red-800", "3.88", "rgb(234, 56, 41)"],
+	["Red 900", "--spectrum-global-color-red-900", "5.09", "rgb(211, 21, 16)"],
+	["Red 1000", "--spectrum-global-color-red-1000", "6.72", "rgb(180, 0, 0)"],
+	["Red 1100", "--spectrum-global-color-red-1100", "8.83", "rgb(147, 0, 0)"],
+	["Red 1200", "--spectrum-global-color-red-1200", "11.35", "rgb(116, 0, 0)"],
+	["Red 1300", "--spectrum-global-color-red-1300", "13.88", "rgb(89, 0, 0)"],
+	["Celery 100", "--spectrum-global-color-celery-100", "1.08", "rgb(205, 252, 191)"],
+	["Celery 200", "--spectrum-global-color-celery-200", "1.20", "rgb(174, 246, 157)"],
+	["Celery 300", "--spectrum-global-color-celery-300", "1.33", "rgb(150, 238, 133)"],
+	["Celery 400", "--spectrum-global-color-celery-400", "1.57", "rgb(114, 224, 106)"],
+	["Celery 500", "--spectrum-global-color-celery-500", "1.91", "rgb(78, 207, 80)"],
+	["Celery 600", "--spectrum-global-color-celery-600", "2.40", "rgb(39, 187, 54)"],
+	["Celery 700", "--spectrum-global-color-celery-700", "3.01", "rgb(7, 167, 33)"],
+	["Celery 800", "--spectrum-global-color-celery-800", "3.91", "rgb(0, 145, 18)"],
+	["Celery 900", "--spectrum-global-color-celery-900", "5.08", "rgb(0, 124, 15)"],
+	["Celery 1000", "--spectrum-global-color-celery-1000", "6.71", "rgb(0, 103, 15)"],
+	["Celery 1100", "--spectrum-global-color-celery-1100", "8.82", "rgb(0, 83, 13)"],
+	["Celery 1200", "--spectrum-global-color-celery-1200", "11.38", "rgb(0, 64, 10)"],
+	["Celery 1300", "--spectrum-global-color-celery-1300", "13.87", "rgb(0, 48, 7)"],
+	["Chartreuse 100", "--spectrum-global-color-chartreuse-100", "1.09", "rgb(219, 252, 110)"],
+	["Chartreuse 200", "--spectrum-global-color-chartreuse-200", "1.19", "rgb(203, 244, 67)"],
+	["Chartreuse 300", "--spectrum-global-color-chartreuse-300", "1.33", "rgb(188, 233, 42)"],
+	["Chartreuse 400", "--spectrum-global-color-chartreuse-400", "1.58", "rgb(170, 216, 22)"],
+	["Chartreuse 500", "--spectrum-global-color-chartreuse-500", "1.91", "rgb(152, 197, 10)"],
+	["Chartreuse 600", "--spectrum-global-color-chartreuse-600", "2.38", "rgb(135, 177, 3)"],
+	["Chartreuse 700", "--spectrum-global-color-chartreuse-700", "3.03", "rgb(118, 156, 0)"],
+	["Chartreuse 800", "--spectrum-global-color-chartreuse-800", "3.88", "rgb(103, 136, 0)"],
+	["Chartreuse 900", "--spectrum-global-color-chartreuse-900", "5.07", "rgb(87, 116, 0)"],
+	["Chartreuse 1000", "--spectrum-global-color-chartreuse-1000", "6.71", "rgb(72, 96, 0)"],
+	["Chartreuse 1100", "--spectrum-global-color-chartreuse-1100", "8.82", "rgb(58, 77, 0)"],
+	["Chartreuse 1200", "--spectrum-global-color-chartreuse-1200", "11.41", "rgb(44, 59, 0)"],
+	["Chartreuse 1300", "--spectrum-global-color-chartreuse-1300", "13.88", "rgb(33, 44, 0)"],
+	["Cyan 100", "--spectrum-global-color-cyan-100", "1.08", "rgb(197, 248, 255)"],
+	["Cyan 200", "--spectrum-global-color-cyan-200", "1.20", "rgb(164, 240, 255)"],
+	["Cyan 300", "--spectrum-global-color-cyan-300", "1.33", "rgb(136, 231, 250)"],
+	["Cyan 400", "--spectrum-global-color-cyan-400", "1.57", "rgb(96, 216, 243)"],
+	["Cyan 500", "--spectrum-global-color-cyan-500", "1.92", "rgb(51, 197, 232)"],
+	["Cyan 600", "--spectrum-global-color-cyan-600", "2.40", "rgb(18, 176, 218)"],
+	["Cyan 700", "--spectrum-global-color-cyan-700", "3.00", "rgb(1, 156, 200)"],
+	["Cyan 800", "--spectrum-global-color-cyan-800", "3.90", "rgb(0, 134, 180)"],
+	["Cyan 900", "--spectrum-global-color-cyan-900", "5.12", "rgb(0, 113, 159)"],
+	["Cyan 1000", "--spectrum-global-color-cyan-1000", "6.76", "rgb(0, 93, 137)"],
+	["Cyan 1100", "--spectrum-global-color-cyan-1100", "8.88", "rgb(0, 74, 115)"],
+	["Cyan 1200", "--spectrum-global-color-cyan-1200", "11.34", "rgb(0, 57, 93)"],
+	["Cyan 1300", "--spectrum-global-color-cyan-1300", "13.93", "rgb(0, 42, 70)"],
+	["Fuchsia 100", "--spectrum-global-color-fuchsia-100", "1.08", "rgb(255, 233, 252)"],
+	["Fuchsia 200", "--spectrum-global-color-fuchsia-200", "1.19", "rgb(255, 218, 250)"],
+	["Fuchsia 300", "--spectrum-global-color-fuchsia-300", "1.34", "rgb(254, 199, 248)"],
+	["Fuchsia 400", "--spectrum-global-color-fuchsia-400", "1.58", "rgb(251, 174, 246)"],
+	["Fuchsia 500", "--spectrum-global-color-fuchsia-500", "1.92", "rgb(245, 146, 243)"],
+	["Fuchsia 600", "--spectrum-global-color-fuchsia-600", "2.38", "rgb(237, 116, 237)"],
+	["Fuchsia 700", "--spectrum-global-color-fuchsia-700", "3.01", "rgb(224, 85, 226)"],
+	["Fuchsia 800", "--spectrum-global-color-fuchsia-800", "3.88", "rgb(205, 58, 206)"],
+	["Fuchsia 900", "--spectrum-global-color-fuchsia-900", "5.07", "rgb(182, 34, 183)"],
+	["Fuchsia 1000", "--spectrum-global-color-fuchsia-1000", "6.72", "rgb(157, 3, 158)"],
+	["Fuchsia 1100", "--spectrum-global-color-fuchsia-1100", "8.85", "rgb(128, 0, 129)"],
+	["Fuchsia 1200", "--spectrum-global-color-fuchsia-1200", "11.29", "rgb(100, 6, 100)"],
+	["Fuchsia 1300", "--spectrum-global-color-fuchsia-1300", "13.93", "rgb(71, 14, 70)"],
+	["Indigo 100", "--spectrum-global-color-indigo-100", "1.08", "rgb(237, 238, 255)"],
+	["Indigo 200", "--spectrum-global-color-indigo-200", "1.20", "rgb(224, 226, 255)"],
+	["Indigo 300", "--spectrum-global-color-indigo-300", "1.34", "rgb(211, 213, 255)"],
+	["Indigo 400", "--spectrum-global-color-indigo-400", "1.57", "rgb(193, 196, 255)"],
+	["Indigo 500", "--spectrum-global-color-indigo-500", "1.91", "rgb(172, 175, 255)"],
+	["Indigo 600", "--spectrum-global-color-indigo-600", "2.39", "rgb(149, 153, 255)"],
+	["Indigo 700", "--spectrum-global-color-indigo-700", "3.00", "rgb(126, 132, 252)"],
+	["Indigo 800", "--spectrum-global-color-indigo-800", "3.89", "rgb(104, 109, 244)"],
+	["Indigo 900", "--spectrum-global-color-indigo-900", "5.10", "rgb(82, 88, 228)"],
+	["Indigo 1000", "--spectrum-global-color-indigo-1000", "6.71", "rgb(64, 70, 202)"],
+	["Indigo 1100", "--spectrum-global-color-indigo-1100", "8.87", "rgb(50, 54, 168)"],
+	["Indigo 1200", "--spectrum-global-color-indigo-1200", "11.34", "rgb(38, 41, 134)"],
+	["Indigo 1300", "--spectrum-global-color-indigo-1300", "13.96", "rgb(27, 30, 100)"],
+	["Magenta 100", "--spectrum-global-color-magenta-100", "1.08", "rgb(255, 234, 241)"],
+	["Magenta 200", "--spectrum-global-color-magenta-200", "1.19", "rgb(255, 220, 232)"],
+	["Magenta 300", "--spectrum-global-color-magenta-300", "1.34", "rgb(255, 202, 221)"],
+	["Magenta 400", "--spectrum-global-color-magenta-400", "1.58", "rgb(255, 178, 206)"],
+	["Magenta 500", "--spectrum-global-color-magenta-500", "1.92", "rgb(255, 149, 189)"],
+	["Magenta 600", "--spectrum-global-color-magenta-600", "2.39", "rgb(250, 119, 170)"],
+	["Magenta 700", "--spectrum-global-color-magenta-700", "3.00", "rgb(239, 90, 152)"],
+	["Magenta 800", "--spectrum-global-color-magenta-800", "3.88", "rgb(222, 61, 130)"],
+	["Magenta 900", "--spectrum-global-color-magenta-900", "5.08", "rgb(200, 34, 105)"],
+	["Magenta 1000", "--spectrum-global-color-magenta-1000", "6.71", "rgb(173, 9, 85)"],
+	["Magenta 1100", "--spectrum-global-color-magenta-1100", "8.84", "rgb(142, 0, 69)"],
+	["Magenta 1200", "--spectrum-global-color-magenta-1200", "11.34", "rgb(112, 0, 55)"],
+	["Magenta 1300", "--spectrum-global-color-magenta-1300", "13.89", "rgb(84, 3, 42)"],
+	["Purple 100", "--spectrum-global-color-purple-100", "1.08", "rgb(246, 235, 255)"],
+	["Purple 200", "--spectrum-global-color-purple-200", "1.20", "rgb(238, 221, 255)"],
+	["Purple 300", "--spectrum-global-color-purple-300", "1.33", "rgb(230, 208, 255)"],
+	["Purple 400", "--spectrum-global-color-purple-400", "1.58", "rgb(219, 187, 254)"],
+	["Purple 500", "--spectrum-global-color-purple-500", "1.92", "rgb(204, 164, 253)"],
+	["Purple 600", "--spectrum-global-color-purple-600", "2.39", "rgb(189, 139, 252)"],
+	["Purple 700", "--spectrum-global-color-purple-700", "3.01", "rgb(174, 114, 249)"],
+	["Purple 800", "--spectrum-global-color-purple-800", "3.87", "rgb(157, 87, 244)"],
+	["Purple 900", "--spectrum-global-color-purple-900", "5.09", "rgb(137, 61, 231)"],
+	["Purple 1000", "--spectrum-global-color-purple-1000", "6.71", "rgb(115, 38, 211)"],
+	["Purple 1100", "--spectrum-global-color-purple-1100", "8.82", "rgb(93, 19, 183)"],
+	["Purple 1200", "--spectrum-global-color-purple-1200", "11.31", "rgb(71, 12, 148)"],
+	["Purple 1300", "--spectrum-global-color-purple-1300", "13.90", "rgb(51, 16, 106)"],
+	["Seafoam 100", "--spectrum-global-color-seafoam-100", "1.09", "rgb(206, 247, 243)"],
+	["Seafoam 200", "--spectrum-global-color-seafoam-200", "1.20", "rgb(170, 241, 234)"],
+	["Seafoam 300", "--spectrum-global-color-seafoam-300", "1.33", "rgb(140, 233, 226)"],
+	["Seafoam 400", "--spectrum-global-color-seafoam-400", "1.58", "rgb(101, 218, 210)"],
+	["Seafoam 500", "--spectrum-global-color-seafoam-500", "1.91", "rgb(63, 201, 193)"],
+	["Seafoam 600", "--spectrum-global-color-seafoam-600", "2.40", "rgb(15, 181, 174)"],
+	["Seafoam 700", "--spectrum-global-color-seafoam-700", "3.01", "rgb(0, 161, 154)"],
+	["Seafoam 800", "--spectrum-global-color-seafoam-800", "3.88", "rgb(0, 140, 135)"],
+	["Seafoam 900", "--spectrum-global-color-seafoam-900", "5.09", "rgb(0, 119, 114)"],
+	["Seafoam 1000", "--spectrum-global-color-seafoam-1000", "6.70", "rgb(0, 99, 95)"],
+	["Seafoam 1100", "--spectrum-global-color-seafoam-1100", "8.83", "rgb(12, 79, 76)"],
+	["Seafoam 1200", "--spectrum-global-color-seafoam-1200", "11.41", "rgb(18, 60, 58)"],
+	["Seafoam 1300", "--spectrum-global-color-seafoam-1300", "13.92", "rgb(18, 44, 43)"],
+	["Yellow 100", "--spectrum-global-color-yellow-100", "1.09", "rgb(251, 241, 152)"],
+	["Yellow 200", "--spectrum-global-color-yellow-200", "1.20", "rgb(248, 231, 80)"],
+	["Yellow 300", "--spectrum-global-color-yellow-300", "1.33", "rgb(248, 217, 4)"],
+	["Yellow 400", "--spectrum-global-color-yellow-400", "1.58", "rgb(232, 198, 0)"],
+	["Yellow 500", "--spectrum-global-color-yellow-500", "1.91", "rgb(215, 179, 0)"],
+	["Yellow 600", "--spectrum-global-color-yellow-600", "2.38", "rgb(196, 159, 0)"],
+	["Yellow 700", "--spectrum-global-color-yellow-700", "3.00", "rgb(176, 140, 0)"],
+	["Yellow 800", "--spectrum-global-color-yellow-800", "3.89", "rgb(155, 120, 0)"],
+	["Yellow 900", "--spectrum-global-color-yellow-900", "5.07", "rgb(133, 102, 0)"],
+	["Yellow 1000", "--spectrum-global-color-yellow-1000", "6.76", "rgb(112, 83, 0)"],
+	["Yellow 1100", "--spectrum-global-color-yellow-1100", "8.80", "rgb(91, 67, 0)"],
+	["Yellow 1200", "--spectrum-global-color-yellow-1200", "11.31", "rgb(72, 51, 0)"],
+	["Yellow 1300", "--spectrum-global-color-yellow-1300", "13.91", "rgb(54, 37, 0)"]
+];		
+const COPY_HTML_SVG = '<svg title="Copy HTML code to clipboard." xmlns="http://www.w3.org/2000/svg" height="25" viewBox="0 0 18 18" width="25"><defs><style>.fill {fill: currentcolor;}</style></defs><title>Copy HTML code to clipboard.</title><rect id="Canvas" fill="#ff13dc" opacity="0" width="18" height="18" /><path class="fill" d="M11,3V2A2,2,0,0,0,7,2V3H5V5h8V3ZM10,3H8V2a1,1,0,0,1,2,0Z" /><path class="fill" d="M15.5,3H14V5.5a.5.5,0,0,1-.5.5h-9A.5.5,0,0,1,4,5.5V3H2.5a.5.5,0,0,0-.5.5v13a.5.5,0,0,0,.5.5h13a.5.5,0,0,0,.5-.5V3.5A.5.5,0,0,0,15.5,3ZM7.0245,12.5915a.2.2,0,0,1,0,.2815l-.844.844a.2.2,0,0,1-.2815,0L3.4635,11.2815a.4.4,0,0,1,0-.5625L5.9,8.283a.2.2,0,0,1,.2815,0l.844.844a.2.2,0,0,1,0,.2815L5.433,11Zm1.9165,2.35a.2.2,0,0,1-.234.156l-1.17-.234a.2.2,0,0,1-.1565-.234L8.894,7.06a.2.2,0,0,1,.234-.156l1.1705.234a.2.2,0,0,1,.156.234Zm5.5955-3.66L12.1,13.717a.2.2,0,0,1-.2815,0l-.844-.844a.2.2,0,0,1,0-.2815L12.567,11,10.9755,9.4085a.2.2,0,0,1,0-.2815l.844-.844a.2.2,0,0,1,.2815,0l2.4355,2.4355A.4.4,0,0,1,14.5365,11.2815Z" /></svg>';
 
 /* CSS */
-const styles = `
+const styles = /* css */ `
 	html, body {
 		height: 100vh;
 	}
@@ -21,8 +242,6 @@ const styles = `
 		height: 100vh;
 		overflow-y: hidden;
 		display: flex;
-		flex-direction: column;
-		padding: 20px 20px 15px 20px;
 	}
 	@media(prefers-color-scheme: dark) {
 		sp-theme {
@@ -36,40 +255,78 @@ const styles = `
 			color: var(--spectrum-global-color-gray-900, rgb(0, 0, 0));
 		}
 	}
-	div#${DIALOG_ID}-header {
+	div#${DIALOG_ID}-sidebar {
+		min-width: 12rem;
 		display: flex;
 		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		padding-bottom: 20px;
+		align-items: start;
+		justify-content: space-between;
+		padding: 30px 20px 20px 20px;
 	}
 	div#${DIALOG_ID}-main {
-		flex: 1;
+		flex:1;
 		overflow-y: scroll;
 	}
-	div#${DIALOG_ID}-footer {
-		display: flex;
-		align-items: center;
-		justify-content: end;
-		padding-top: 20px;
+	div#${DIALOG_ID}-sidebar sp-menu sp-menu-item[selected] {
+		font-weight: bold;
+	}
+	.components {
+		display: none;
+		padding: 20px
 	}
 	.component {
-		margin-top: 1rem;
-		padding: 10px 10px 10px 0;
+		margin-bottom: 20px;
+		display: flex;
+		flex-direction: column;
+	}
+	sp-label.component-label {
+		align-self: start;
+		transform: translate(10px, 0.85rem);
+		padding: 4px 6px;
+		margin-bottom: 10px;
+		border-radius: 2px;
+		color: #ffffff;
+		background-color: var(--spectrum-global-color-seafoam-800, rgb(0,140,135));
+	}
+	sp-body.component-description {
+		order: 10;
+		margin-left: 10px;
+		margin-top: 0.3rem;
 	}
 	.component-items {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+		background-color: rgb(190,190,190);
+		border-radius: 4px;
+		padding: 20px;
 	}
-	.component-label {
-		background-color: rgba(255,255,255,0.3);
-		padding: 4px 6px;
-		margin-bottom: 10px;
+	.component-items sp-body, .component-items sp-detail, .component-items sp-label {
+		margin: 0;
+	}
+	.component-code {
+		flex: 1;
+	}
+	.spectrum-color {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+	.spectrum-color-swatch {
+		width: 2rem;
+		height: 2rem;
 		border-radius: 2px;
+		margin-right: 1rem;
+	}
+	.spectrum-color-name {
+		font-weight: bold;
+		margin-right: 1rem;
+	}
+	.visible {
+		display: block;
 	}
 	.hidden {
-		transform: translateX(-200%);
+		display: none;
 	}
 	sp-heading {
 		margin: 0;
@@ -77,77 +334,342 @@ const styles = `
 `;
 
 /* HTML */
-const template = `
+const template = /* html */`
 	<sp-theme
 		theme="sectrum"
 		color="light"
 		scale="medium"
 		dir="ltr"
-	>	
-		<div id="${DIALOG_ID}-header">
-			<nav id="${DIALOG_ID}-menu">
-				<sp-action-button quiet>Typograpy</sp-action-button>
-			</nav>
-			<sp-divider size="large"></sp-divider>
+	>
+		<div id="${DIALOG_ID}-sidebar">
+			<sp-menu id="${DIALOG_ID}-menu">
+				<sp-menu-item selected value="typography">Typograpy</sp-menu-item>
+				<sp-menu-item value="ui">User Interface</sp-menu-item>
+				<sp-menu-item value="icon">Icons</sp-menu-item>
+				<sp-menu-item value="color">Colors</sp-menu-item>
+			</sp-menu>
+			<sp-button id="${DIALOG_ID}-close-button" treatment="outline" variant="primary">Close</sp-button>
 		</div>
 		<div id="${DIALOG_ID}-main">
 			<!-- Typography -->
-			<div id="typography" class="components">
-				<div class="component" title="Renders heading text that is theme aware.">
-					<sp-label class="component-label">Heading XL</sp-label>
+			<div id="typography" class="components visible">
+				<div class="component">
+					<sp-label class="component-label">sp-heading</sp-label>
+					<sp-body class="component-description" size="S">Renders heading text that is theme aware.</sp-body>
 					<div class="component-items">
 						<div class="component-code">
 							<sp-heading size="XL">Lorem ipsum dolor sit</sp-heading>
 						</div>
 						<sp-action-button class="copy-html-button" size="large" quiet>
-							<svg xmlns="http://www.w3.org/2000/svg" height="25" viewBox="0 0 18 18" width="25"><defs><style>.fill {fill: currentcolor;}</style></defs><title>S PasteHTML 18 N</title><rect id="Canvas" fill="#ff13dc" opacity="0" width="18" height="18" /><path class="fill" d="M11,3V2A2,2,0,0,0,7,2V3H5V5h8V3ZM10,3H8V2a1,1,0,0,1,2,0Z" /><path class="fill" d="M15.5,3H14V5.5a.5.5,0,0,1-.5.5h-9A.5.5,0,0,1,4,5.5V3H2.5a.5.5,0,0,0-.5.5v13a.5.5,0,0,0,.5.5h13a.5.5,0,0,0,.5-.5V3.5A.5.5,0,0,0,15.5,3ZM7.0245,12.5915a.2.2,0,0,1,0,.2815l-.844.844a.2.2,0,0,1-.2815,0L3.4635,11.2815a.4.4,0,0,1,0-.5625L5.9,8.283a.2.2,0,0,1,.2815,0l.844.844a.2.2,0,0,1,0,.2815L5.433,11Zm1.9165,2.35a.2.2,0,0,1-.234.156l-1.17-.234a.2.2,0,0,1-.1565-.234L8.894,7.06a.2.2,0,0,1,.234-.156l1.1705.234a.2.2,0,0,1,.156.234Zm5.5955-3.66L12.1,13.717a.2.2,0,0,1-.2815,0l-.844-.844a.2.2,0,0,1,0-.2815L12.567,11,10.9755,9.4085a.2.2,0,0,1,0-.2815l.844-.844a.2.2,0,0,1,.2815,0l2.4355,2.4355A.4.4,0,0,1,14.5365,11.2815Z" /></svg>
+							${COPY_HTML_SVG}
 						</sp-action-button>
 					</div>
 				</div>
-				<div class="component" title="Renders body text that is theme aware.">
-					<sp-label class="component-label">Body Text</sp-label>
+				<div class="component">
+					<sp-label class="component-label">sp-body</sp-label>
+					<sp-body class="component-description" size="S">Renders body text that is theme aware.</sp-body>
 					<div class="component-items">
 						<div class="component-code">
 							<sp-body size="M">Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</sp-body>
 						</div>
 						<sp-action-button class="copy-html-button" size="large" quiet>
-							<svg xmlns="http://www.w3.org/2000/svg" height="25" viewBox="0 0 18 18" width="25"><defs><style>.fill {fill: currentcolor;}</style></defs><title>S PasteHTML 18 N</title><rect id="Canvas" fill="#ff13dc" opacity="0" width="18" height="18" /><path class="fill" d="M11,3V2A2,2,0,0,0,7,2V3H5V5h8V3ZM10,3H8V2a1,1,0,0,1,2,0Z" /><path class="fill" d="M15.5,3H14V5.5a.5.5,0,0,1-.5.5h-9A.5.5,0,0,1,4,5.5V3H2.5a.5.5,0,0,0-.5.5v13a.5.5,0,0,0,.5.5h13a.5.5,0,0,0,.5-.5V3.5A.5.5,0,0,0,15.5,3ZM7.0245,12.5915a.2.2,0,0,1,0,.2815l-.844.844a.2.2,0,0,1-.2815,0L3.4635,11.2815a.4.4,0,0,1,0-.5625L5.9,8.283a.2.2,0,0,1,.2815,0l.844.844a.2.2,0,0,1,0,.2815L5.433,11Zm1.9165,2.35a.2.2,0,0,1-.234.156l-1.17-.234a.2.2,0,0,1-.1565-.234L8.894,7.06a.2.2,0,0,1,.234-.156l1.1705.234a.2.2,0,0,1,.156.234Zm5.5955-3.66L12.1,13.717a.2.2,0,0,1-.2815,0l-.844-.844a.2.2,0,0,1,0-.2815L12.567,11,10.9755,9.4085a.2.2,0,0,1,0-.2815l.844-.844a.2.2,0,0,1,.2815,0l2.4355,2.4355A.4.4,0,0,1,14.5365,11.2815Z" /></svg>
+							${COPY_HTML_SVG}
 						</sp-action-button>
 					</div>
 				</div>
-				<div class="component" title="Renders detail text in smaller font.">
-					<sp-label class="component-label">Detail</sp-label>
+				<div class="component">
+					<sp-label class="component-label">sp-detail</sp-label>
+					<sp-body class="component-description" size="S">Renders detail text in smaller font.</sp-body>
 					<div class="component-items">
 						<div class="component-code">
 							<sp-detail>Lorem ipsum dolor sit amet, consectetur adipisici elit.</sp-detail>
 						</div>
 						<sp-action-button class="copy-html-button" size="large" quiet>
-							<svg xmlns="http://www.w3.org/2000/svg" height="25" viewBox="0 0 18 18" width="25"><defs><style>.fill {fill: currentcolor;}</style></defs><title>S PasteHTML 18 N</title><rect id="Canvas" fill="#ff13dc" opacity="0" width="18" height="18" /><path class="fill" d="M11,3V2A2,2,0,0,0,7,2V3H5V5h8V3ZM10,3H8V2a1,1,0,0,1,2,0Z" /><path class="fill" d="M15.5,3H14V5.5a.5.5,0,0,1-.5.5h-9A.5.5,0,0,1,4,5.5V3H2.5a.5.5,0,0,0-.5.5v13a.5.5,0,0,0,.5.5h13a.5.5,0,0,0,.5-.5V3.5A.5.5,0,0,0,15.5,3ZM7.0245,12.5915a.2.2,0,0,1,0,.2815l-.844.844a.2.2,0,0,1-.2815,0L3.4635,11.2815a.4.4,0,0,1,0-.5625L5.9,8.283a.2.2,0,0,1,.2815,0l.844.844a.2.2,0,0,1,0,.2815L5.433,11Zm1.9165,2.35a.2.2,0,0,1-.234.156l-1.17-.234a.2.2,0,0,1-.1565-.234L8.894,7.06a.2.2,0,0,1,.234-.156l1.1705.234a.2.2,0,0,1,.156.234Zm5.5955-3.66L12.1,13.717a.2.2,0,0,1-.2815,0l-.844-.844a.2.2,0,0,1,0-.2815L12.567,11,10.9755,9.4085a.2.2,0,0,1,0-.2815l.844-.844a.2.2,0,0,1,.2815,0l2.4355,2.4355A.4.4,0,0,1,14.5365,11.2815Z" /></svg>
+							${COPY_HTML_SVG}
 						</sp-action-button>
 					</div>
 				</div>
-				<div class="component" title="">
-					<sp-label class="component-label">Label</sp-label>
+				<div class="component">
+					<sp-label class="component-label">sp-label</sp-label>
+					<sp-body class="component-description" size="S">Renders a text label.</sp-body>
 					<div class="component-items">
 						<div class="component-code">
 							<sp-label>Lorem ipsum dolor sit amet, consectetur adipisici elit.</sp-label>
 						</div>
 						<sp-action-button class="copy-html-button" size="large" quiet>
-							<svg xmlns="http://www.w3.org/2000/svg" height="25" viewBox="0 0 18 18" width="25"><defs><style>.fill {fill: currentcolor;}</style></defs><title>S PasteHTML 18 N</title><rect id="Canvas" fill="#ff13dc" opacity="0" width="18" height="18" /><path class="fill" d="M11,3V2A2,2,0,0,0,7,2V3H5V5h8V3ZM10,3H8V2a1,1,0,0,1,2,0Z" /><path class="fill" d="M15.5,3H14V5.5a.5.5,0,0,1-.5.5h-9A.5.5,0,0,1,4,5.5V3H2.5a.5.5,0,0,0-.5.5v13a.5.5,0,0,0,.5.5h13a.5.5,0,0,0,.5-.5V3.5A.5.5,0,0,0,15.5,3ZM7.0245,12.5915a.2.2,0,0,1,0,.2815l-.844.844a.2.2,0,0,1-.2815,0L3.4635,11.2815a.4.4,0,0,1,0-.5625L5.9,8.283a.2.2,0,0,1,.2815,0l.844.844a.2.2,0,0,1,0,.2815L5.433,11Zm1.9165,2.35a.2.2,0,0,1-.234.156l-1.17-.234a.2.2,0,0,1-.1565-.234L8.894,7.06a.2.2,0,0,1,.234-.156l1.1705.234a.2.2,0,0,1,.156.234Zm5.5955-3.66L12.1,13.717a.2.2,0,0,1-.2815,0l-.844-.844a.2.2,0,0,1,0-.2815L12.567,11,10.9755,9.4085a.2.2,0,0,1,0-.2815l.844-.844a.2.2,0,0,1,.2815,0l2.4355,2.4355A.4.4,0,0,1,14.5365,11.2815Z" /></svg>
+							${COPY_HTML_SVG}
 						</sp-action-button>
 					</div>
 				</div>
+				<div class="component">
+					<sp-label class="component-label">sp-link</sp-label>
+					<sp-body class="component-description" size="S">Renders a link, that when clicked can launch a webpage in the user's default browser.</sp-body>
+					<div class="component-items">
+						<sp-body>
+							This is a <span class="component-code"><sp-link href="https://www.adobe.com">standard link</sp-link></span>.
+						</sp-body>
+						<sp-action-button class="copy-html-button" size="large" quiet>
+							${COPY_HTML_SVG}
+						</sp-action-button>
+					</div>
+				</div>
+				<!-- ... -->
 			</div>
 			<!-- User Interface -->
-			<div id="buttons" class="components hidden">
-				<sp-body>Buttons</sp-body>
+			<div id="ui" class="components">
+				<div class="component">
+					<sp-label class="component-label">sp-action-button</sp-label>
+					<sp-body class="component-description" size="S">Renders an action button.</sp-body>
+					<div class="component-items">
+						<div class="component-code">
+							<sp-action-button>Action Button</sp-action-button>
+						</div>
+						<sp-action-button class="copy-html-button" size="large" quiet>
+							${COPY_HTML_SVG}
+						</sp-action-button>
+					</div>
+				</div>
+				<div class="component">
+					<sp-label class="component-label">sp-button</sp-label>
+					<sp-body class="component-description" size="S">Renders an button.</sp-body>
+					<div class="component-items">
+						<div class="component-code">
+							<sp-button>Button</sp-button>
+						</div>
+						<sp-action-button class="copy-html-button" size="large" quiet>
+							${COPY_HTML_SVG}
+						</sp-action-button>
+					</div>
+				</div>
+				<div class="component">
+					<sp-label class="component-label">sp-checkbox</sp-label>
+					<sp-body class="component-description" size="S">Renders an checkbox with associated label.</sp-body>
+					<div class="component-items">
+						<div class="component-code">
+							<sp-checkbox>Checkbox with label</sp-checkbox>
+						</div>
+						<sp-action-button class="copy-html-button" size="large" quiet>
+							${COPY_HTML_SVG}
+						</sp-action-button>
+					</div>
+				</div>
+				<div class="component">
+					<sp-label class="component-label">sp-divider</sp-label>
+					<sp-body class="component-description" size="S">Renders a divider.</sp-body>
+					<div class="component-items">
+						<div class="component-code">
+							<sp-divider></sp-divider>
+						</div>
+						<sp-action-button class="copy-html-button" size="large" quiet>
+							${COPY_HTML_SVG}
+						</sp-action-button>
+					</div>
+				</div>
+				<div class="component">
+					<sp-label class="component-label">sp-dropdown</sp-label>
+					<sp-body class="component-description" size="S">Renders a dropdown with menu items. The dropdown must contain a sp-menu with slot="options", and inside the sp-menu, a series of sp-menu-item or sp-menu-divider elements.</sp-body>
+					<div class="component-items">
+						<div class="component-code">
+							<sp-dropdown placeholder="Make a selection..." style="width: 320px">
+								<sp-menu slot="options">
+									<sp-menu-item>Deselect</sp-menu-item>
+									<sp-menu-item>Select inverse</sp-menu-item>
+									<sp-menu-item>Feather...</sp-menu-item>
+									<sp-menu-item>Select and mask...</sp-menu-item>
+									<sp-menu-divider></sp-menu-divider>
+									<sp-menu-item>Save selection</sp-menu-item>
+									<sp-menu-item disabled>Make work path</sp-menu-item>
+								</sp-menu>
+							</sp-dropdown>
+						</div>
+						<sp-action-button class="copy-html-button" size="large" quiet>
+							${COPY_HTML_SVG}
+						</sp-action-button>
+					</div>
+				</div>
+				<div class="component">
+					<sp-label class="component-label">sp-menu</sp-label>
+					<sp-body class="component-description" size="S">Renders a menu with menu items. Inside the sp-menu, a series of sp-menu-item or sp-menu-divider elements may exist.</sp-body>
+					<div class="component-items">
+						<div class="component-code">
+						<sp-menu>
+							<sp-menu-item> Deselect </sp-menu-item>
+							<sp-menu-item> Select inverse </sp-menu-item>
+							<sp-menu-item> Feather... </sp-menu-item>
+							<sp-menu-item> Select and mask... </sp-menu-item>
+							<sp-menu-divider></sp-menu-divider>
+							<sp-menu-item> Save selection </sp-menu-item>
+							<sp-menu-item disabled> Make work path </sp-menu-item>
+						</sp-menu>
+						</div>
+						<sp-action-button class="copy-html-button" size="large" quiet>
+							${COPY_HTML_SVG}
+						</sp-action-button>
+					</div>
+				</div>
+				<div class="component">
+					<sp-label class="component-label">sp-progressbar</sp-label>
+					<sp-body class="component-description" size="S">Renders a progress bar.</sp-body>
+					<div class="component-items">
+						<div class="component-code">
+						<sp-progressbar max="100" value="50" value-label="593 KB" size="medium">
+							<sp-label slot="label">Uploading...</sp-label>
+						</sp-progressbar>
+						</div>
+						<sp-action-button class="copy-html-button" size="large" quiet>
+							${COPY_HTML_SVG}
+						</sp-action-button>
+					</div>
+				</div>
+				<div class="component">
+					<sp-label class="component-label">sp-radio</sp-label>
+					<sp-body class="component-description" size="S">Renders a radio button with associated label.</sp-body>
+					<div class="component-items">
+						<div class="component-code">
+							<sp-radio value="id">Adobe InDesign</sp-radio>
+						</div>
+						<sp-action-button class="copy-html-button" size="large" quiet>
+							${COPY_HTML_SVG}
+						</sp-action-button>
+					</div>
+				</div>
+				<div class="component">
+					<sp-label class="component-label">sp-radio-group</sp-label>
+					<sp-body class="component-description" size="S">Renders a group of radio buttons horizontally or vertically (column layout), with an optional field label.</sp-body>
+					<div class="component-items">
+						<div class="component-code">
+							<sp-radio-group>
+								<sp-label slot="label">Select a product:</sp-label>
+								<sp-radio value="ps">Adobe Photoshop</sp-radio>
+								<sp-radio value="id">Adobe InDesign</sp-radio>
+								<sp-radio value="xd">Adobe XD</sp-radio>
+							</sp-radio-group>
+						</div>
+						<sp-action-button class="copy-html-button" size="large" quiet>
+							${COPY_HTML_SVG}
+						</sp-action-button>
+					</div>
+				</div>
+				<div class="component">
+					<sp-label class="component-label">sp-slider</sp-label>
+					<sp-body class="component-description" size="S">Renders a slider with optional associated label.</sp-body>
+					<div class="component-items">
+						<div class="component-code">
+							<sp-slider min="0" max="100" value="50">
+								<sp-label slot="label">Slider Label</sp-label>
+							</sp-slider>
+						</div>
+						<sp-action-button class="copy-html-button" size="large" quiet>
+							${COPY_HTML_SVG}
+						</sp-action-button>
+					</div>
+				</div>
+				<div class="component">
+					<sp-label class="component-label">sp-textarea</sp-label>
+					<sp-body class="component-description" size="S">Renders a text area with optional associated label.</sp-body>
+					<div class="component-items">
+						<div class="component-code">
+						<sp-textarea placeholder="Enter your name" multiline>
+							<sp-label slot="label">Name</sp-label>
+						</sp-textarea>
+						</div>
+						<sp-action-button class="copy-html-button" size="large" quiet>
+							${COPY_HTML_SVG}
+						</sp-action-button>
+					</div>
+				</div>
+				<div class="component">
+					<sp-label class="component-label">sp-textfield</sp-label>
+					<sp-body class="component-description" size="S">Renders a text field with optional associated label.</sp-body>
+					<div class="component-items">
+						<div class="component-code">
+							<sp-textfield placeholder="Phone Number">
+								<sp-label isrequired="true" slot="label">Phone Number</sp-label>
+							</sp-textfield>
+						</div>
+						<sp-action-button class="copy-html-button" size="large" quiet>
+							${COPY_HTML_SVG}
+						</sp-action-button>
+					</div>
+				</div>
+				<!-- ... -->
 			</div>
-		</div>
-		<div id="${DIALOG_ID}-footer">
-			<sp-button id="${DIALOG_ID}-close-button">OK</sp-button>
+			<!-- Icons -->
+			<div id="icon" class="components">
+				${ buildIconComponents(spectrumIconArray, COPY_HTML_SVG) }
+			</div>
+			<!-- Colors -->
+			<div id="color" class="components">
+				${ buildColorComponents(spectrumColorArray, COPY_HTML_SVG) }
+			</div>
 		</div>
 	</sp-theme>
 `;
+
+
+/**
+ * Build HTML Code for Spectrum Colors 
+ * @returns {String}
+ */
+function buildIconComponents(iconArray, copyHtmlSvg) {
+
+	if(!iconArray || !(iconArray instanceof Array)) {
+		return "";
+	}
+
+	const iconComponentsString = iconArray.reduce((acc, curValue) => {
+		const [name, attributeValue] = curValue;
+		return `
+				${acc}
+				<div class="component">
+					<sp-label class="component-label">sp-icon</sp-label>
+					<sp-body class="component-description" size="S">${name}</sp-body>
+					<div class="component-items">
+						<span class="component-code"><sp-icon name="${attributeValue}" size="xxl"></sp-icon></span>
+						<sp-action-button class="copy-html-button" size="large" quiet>
+							${copyHtmlSvg}
+						</sp-action-button>
+					</div>
+				</div>`;
+	},"");
+
+	return iconComponentsString;
+}
+
+
+/**
+ * Build HTML Code for Spectrum Colors 
+ * @returns {String}
+ */
+function buildColorComponents(colorArray, copyHtmlSvg) {
+
+	if(!colorArray || !(colorArray instanceof Array)) {
+		return "";
+	}
+
+	const colorComponentsString = colorArray.reduce((acc, curValue) => {
+		const [name, customProp, contrast, colorValue] = curValue;
+		return `
+				${acc}
+				<div class="component">
+					<div class="component-items">
+						<sp-body size="S">
+							<div class="spectrum-color">
+								<span class="spectrum-color-swatch" style="background-color: ${colorValue};"></span>
+								<span class="spectrum-color-name">${name}</span>
+								<span class="spectrum-color-variable">${customProp}</span>
+								<span class="component-code hidden">var(${customProp}, ${colorValue})</span>
+							</div>
+						</sp-body>
+						<sp-action-button class="copy-html-button" size="large" quiet>
+							${copyHtmlSvg}
+						</sp-action-button>
+					</div>
+				</div>`;
+	},"");
+
+	return colorComponentsString;
+}
 
 
 /**
@@ -169,17 +691,29 @@ function mount(dialogID, styles, template) {
 
 	document.body.appendChild(dialogElem);
 
+	/* Menu */
+	const menuElem = document.getElementById(`${dialogID}-menu`);
+	menuElem.addEventListener('change', evt => {
+		const targetID = evt.target.value;
+		document.querySelectorAll('.components')?.forEach(item => {
+			item.classList.remove('visible');
+		});
+		document.querySelector('#' + targetID)?.classList.add('visible');
+	});
+
+	/* Close Button */
 	const closeButtonElem = document.getElementById(`${dialogID}-close-button`);
 	closeButtonElem.addEventListener('click', evt => {
 		dialogElem.close("OK");
 	});
 
+	/* Copy HTML Button */
 	const copyHTMLButtonList = document.querySelectorAll(".copy-html-button");
 	copyHTMLButtonList.forEach(buttonElem => {
 		buttonElem.addEventListener('click', evt => {
 			console.log(evt.target)
 			const componentCodeElem = evt.target.parentElement.parentElement.querySelector(".component-code");
-			navigator.clipboard.setContent({ "text/plain":componentCodeElem.innerHTML.replace(/[\t\r\n]/g,"") });
+			navigator.clipboard.setContent({ "text/plain":componentCodeElem.innerHTML.replace(/(^[\t\r\n]+|[\t]{7}|[\t\r\n]+$)/g,"") });
 		});
 	});
 	
@@ -189,9 +723,4 @@ function mount(dialogID, styles, template) {
 
 const dialogElem = mount(DIALOG_ID, styles, template);
 await dialogElem.showModal(DIALOG_CONFIG);
-
-
-
-
-
 
