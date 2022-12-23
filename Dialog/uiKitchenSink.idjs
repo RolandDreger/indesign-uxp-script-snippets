@@ -759,6 +759,10 @@ function mount(dialogID, styles, template) {
 			item.classList.remove('visible');
 		});
 		document.querySelector('#' + targetID)?.classList.add('visible');
+		const mainElem = document.querySelector(`#${dialogID}-main`);
+		if(!!mainElem) {
+			mainElem.scrollTop = 0;
+		}
 	});
 
 	/* Close Button */
