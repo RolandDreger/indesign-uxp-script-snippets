@@ -351,7 +351,7 @@ const template = /* html */`
 	>
 		<div id="${DIALOG_ID}-sidebar">
 			<sp-menu id="${DIALOG_ID}-menu">
-				<sp-menu-item selected value="typography">Typograpy</sp-menu-item>
+				<sp-menu-item selected value="typography">Typography</sp-menu-item>
 				<sp-menu-item value="ui">User Interface</sp-menu-item>
 				<sp-menu-item value="icon">Icons</sp-menu-item>
 				<sp-menu-item value="color">Colors</sp-menu-item>
@@ -359,7 +359,8 @@ const template = /* html */`
 			<sp-button id="${DIALOG_ID}-close-button" treatment="outline" variant="primary">Close</sp-button>
 		</div>
 		<div id="${DIALOG_ID}-main">
-			<!-- Typography -->
+			<!-- 
+			-->
 			<div id="typography" class="components visible">
 				<div class="component">
 					<sp-label class="component-label">sp-heading</sp-label>
