@@ -13,6 +13,8 @@ async function alert(msg, type) {
 		type = "";
 	}
 
+	const app = global.app ?? require("indesign").app;
+
 	let dialogElem = document.getElementById("rd-alert");
 	if(!dialogElem) {
 		dialogElem = createAlertDialog();

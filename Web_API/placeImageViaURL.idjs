@@ -1,6 +1,7 @@
 const fs = require('fs');
 const uxpStorage = require('uxp').storage;
 const uxpLocalFileSystem = uxpStorage.localFileSystem;
+const app = global.app ?? require("indesign").app;
 
 /* Check: User is online? */
 if(!navigator.onLine) {
