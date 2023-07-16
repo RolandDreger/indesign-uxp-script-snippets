@@ -5,7 +5,7 @@ console.log(scriptFolderPath);
 // Script path
 const scriptPath = scriptFolderPath + __filename;
 console.log(scriptPath);
-console.log(app.activeScript); // Gives an error in the UXP Developer Tool
+console.log(app.activeScript); // Gives an error in the UXP Developer Tool (prior to InDesign 18.4)
 
 
 /**
@@ -16,7 +16,7 @@ async function getScriptFolderPath() {
 	
 	const uxpStorage = require('uxp').storage;
 	const localFS = uxpStorage.localFileSystem;
-	const pluginFolder = await localFS.getPluginFolder();
+	const pluginFolder = await localFS.getPluginFolder(); // InDesign 18.4 onward: Error – Plugin folder is not available for scripts
 
 	return pluginFolder.nativePath.replace(/[\\/]$/,"");
 }
